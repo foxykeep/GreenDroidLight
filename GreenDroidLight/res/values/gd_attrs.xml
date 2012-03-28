@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AsyncImageView">
+        <attr name="defaultSrc" format="reference" />
+        <attr name="url" format="string" />
+        <attr name="inDensity">
+            <enum name="ldpi" value="120" />
+            <enum name="mdpi" value="160" />
+            <enum name="hdpi" value="240" />
+            <enum name="xhdpi" value="320" />
+        </attr>
+    </declare-styleable>
+
+</resources>
