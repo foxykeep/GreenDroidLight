@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">GreenDroidLightPoC</string>
+
+    <!-- MainActivity texts -->
+    <string name="main_b_async_image_view">AsyncImageView List</string>
+    <string name="main_b_paged_view">PagedView</string>
+
+    <!-- AsyncImageViewListActivity texts -->
+    <string name="image_for_position">Image for position </string>
+
+</resources>
