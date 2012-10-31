@@ -3,6 +3,7 @@ GreenDroidLight
 
 This project is based on the project Greendroid (https://github.com/cyrilmottier/GreenDroid).
 This version offers a lighter version of the original library. The main changes are :
+
 1. Remove all the code corresponding to ActionBar as it was conflicting with the SDK implementation starting with HoneyComb. You can check [ActionBarSherlock](http://actionbarsherlock.com/) for a support of the ActionBar pattern instead.
 2. Modify some constraints of the original library.
 
@@ -35,4 +36,6 @@ GreenDroid by Cyril Mottier (http://www.cyrilmottier.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 You may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License
+
