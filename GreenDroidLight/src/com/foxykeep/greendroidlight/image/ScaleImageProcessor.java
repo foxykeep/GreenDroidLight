@@ -1,18 +1,24 @@
-/*
- * Copyright (C) 2011 Cyril Mottier (http://www.cyrilmottier.com)
+/**
+ * <pre>
+ * 2012 Foxykeep (http://www.foxykeep.com)
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Based on the project GreenDroid by Cyril Mottier (http://www.cyrilmottier.com)
+ *
+ * Original License :
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ * </pre>
  */
+
 package com.foxykeep.greendroidlight.image;
 
 import android.graphics.Bitmap;
@@ -23,9 +29,9 @@ import android.graphics.RectF;
 import android.widget.ImageView.ScaleType;
 
 /**
- * Scales Bitmaps according to a given width and height. The scaling method may
- * be one of the ScaleType values
- * 
+ * Scales Bitmaps according to a given width and height. The scaling method may be one of the
+ * ScaleType values
+ *
  * @author Cyril Mottier
  * @author kennydude
  */
@@ -41,7 +47,7 @@ public class ScaleImageProcessor implements ImageProcessor {
 
     /**
      * Create a new ScaleImageProcessor.
-     * 
+     *
      * @param width The width of the final surrounding box
      * @param height The height of the final surrounding box
      * @param scaleType The ScaleType method used to scale the original Bitmap
@@ -102,7 +108,8 @@ public class ScaleImageProcessor implements ImageProcessor {
                 if (bWidth <= mWidth && bHeight <= mHeight) {
                     scale = 1.0f;
                 } else {
-                    scale = Math.min((float) mWidth / (float) bWidth, (float) mHeight / (float) bHeight);
+                    scale = Math.min((float) mWidth / (float) bWidth, (float) mHeight
+                            / (float) bHeight);
                 }
 
                 dx = (int) ((mWidth - bWidth * scale) * 0.5f + 0.5f);

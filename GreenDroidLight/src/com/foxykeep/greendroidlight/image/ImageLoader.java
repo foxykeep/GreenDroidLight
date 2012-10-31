@@ -1,24 +1,25 @@
-/*
- * Copyright (C) 2010 Cyril Mottier (http://www.cyrilmottier.com)
+/**
+ * <pre>
+ * 2012 Foxykeep (http://www.foxykeep.com)
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Based on the project GreenDroid by Cyril Mottier (http://www.cyrilmottier.com)
+ *
+ * Original License :
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ * </pre>
  */
-package com.foxykeep.greendroidlight.image;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
+package com.foxykeep.greendroidlight.image;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -34,15 +35,20 @@ import android.util.Log;
 import com.foxykeep.greendroidlight.config.LogConfig;
 import com.foxykeep.greendroidlight.util.GDUtils;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+
 /**
- * An ImageLoader asynchronously loads image from a given url. Client may be notified from the current image loading state using the
- * {@link ImageLoaderCallback}.
+ * An ImageLoader asynchronously loads image from a given url. Client may be notified from the
+ * current image loading state using the {@link ImageLoaderCallback}.
  * <p>
  * <em><strong>Note: </strong>You normally don't need to use the {@link ImageLoader}
  * class directly in your application. You'll generally prefer using an
  * {@link ImageRequest} that takes care of the entire loading process.</em>
  * </p>
- * 
+ *
  * @author Cyril Mottier
  */
 public class ImageLoader {
@@ -91,11 +97,13 @@ public class ImageLoader {
         return loadImage(url, callback, null);
     }
 
-    public Future<?> loadImage(final String url, final ImageLoaderCallback callback, final ImageProcessor bitmapProcessor) {
+    public Future<?> loadImage(final String url, final ImageLoaderCallback callback,
+            final ImageProcessor bitmapProcessor) {
         return loadImage(url, callback, bitmapProcessor, null);
     }
 
-    public Future<?> loadImage(final String url, final ImageLoaderCallback callback, final ImageProcessor bitmapProcessor,
+    public Future<?> loadImage(final String url, final ImageLoaderCallback callback,
+            final ImageProcessor bitmapProcessor,
             final BitmapFactory.Options options) {
         return sExecutor.submit(new ImageFetcher(url, callback, bitmapProcessor, options));
     }
@@ -107,7 +115,8 @@ public class ImageLoader {
         private ImageProcessor mBitmapProcessor;
         private BitmapFactory.Options mOptions;
 
-        public ImageFetcher(final String url, final ImageLoaderCallback callback, final ImageProcessor bitmapProcessor,
+        public ImageFetcher(final String url, final ImageLoaderCallback callback,
+                final ImageProcessor bitmapProcessor,
                 final BitmapFactory.Options options) {
             mUrl = url;
             mHandler = new ImageHandler(url, callback);
@@ -134,13 +143,15 @@ public class ImageLoader {
                 InputStream inputStream = null;
 
                 if (mUrl.startsWith("file:///android_asset/")) {
-                    inputStream = sAssetManager.open(mUrl.replaceFirst("file:///android_asset/", ""));
+                    inputStream = sAssetManager.open(mUrl
+                            .replaceFirst("file:///android_asset/", ""));
                 } else {
                     inputStream = new URL(mUrl).openStream();
                 }
 
                 // TODO Cyril: Use a AndroidHttpClient?
-                bitmap = BitmapFactory.decodeStream(inputStream, null, (mOptions == null) ? sDefaultOptions : mOptions);
+                bitmap = BitmapFactory.decodeStream(inputStream, null,
+                        (mOptions == null) ? sDefaultOptions : mOptions);
 
                 if (mBitmapProcessor != null && bitmap != null) {
                     final Bitmap processedBitmap = mBitmapProcessor.processImage(bitmap);

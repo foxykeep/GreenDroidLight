@@ -1,22 +1,25 @@
-/*
- * Copyright (C) 2011 Cyril Mottier (http://www.cyrilmottier.com)
+/**
+ * <pre>
+ * 2012 Foxykeep (http://www.foxykeep.com)
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Based on the project GreenDroid by Cyril Mottier (http://www.cyrilmottier.com)
+ *
+ * Original License :
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ * </pre>
  */
-package com.foxykeep.greendroidlight.widget;
 
-import java.util.LinkedList;
-import java.util.Queue;
+package com.foxykeep.greendroidlight.widget;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -37,18 +40,24 @@ import android.widget.Scroller;
 
 import com.foxykeep.greendroidlight.config.LogConfig;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * <p>
- * A View that shows items in a "paged" manner. Pages can be scrolled horizontally by swiping the View. The PagedView uses a reuse mechanism similar
- * to the one used by the ListView widget. Pages come from a {@link PagedAdapter}.
+ * A View that shows items in a "paged" manner. Pages can be scrolled horizontally by swiping the
+ * View. The PagedView uses a reuse mechanism similar to the one used by the ListView widget. Pages
+ * come from a {@link PagedAdapter}.
  * </p>
  * <p>
- * Clients may listen to PagedView changes (scrolling, page change, etc.) using an {@link OnPagedViewChangeListener} .
+ * Clients may listen to PagedView changes (scrolling, page change, etc.) using an
+ * {@link OnPagedViewChangeListener} .
  * </p>
  * <p>
- * It is usually a good idea to show the user which page is currently on screen. This can be easily done with a {@link PageIndicator}.
+ * It is usually a good idea to show the user which page is currently on screen. This can be easily
+ * done with a {@link PageIndicator}.
  * </p>
- * 
+ *
  * @author Cyril Mottier
  */
 public class PagedView extends ViewGroup {
@@ -57,14 +66,14 @@ public class PagedView extends ViewGroup {
 
     /**
      * Clients may listen to changes occurring on a PagedView via this interface.
-     * 
+     *
      * @author Cyril Mottier
      */
     public interface OnPagedViewChangeListener {
 
         /**
          * Notify the client the current page has changed.
-         * 
+         *
          * @param pagedView The PagedView that changed its current page
          * @param previousPage The previously selected page
          * @param newPage The newly selected page
@@ -73,14 +82,14 @@ public class PagedView extends ViewGroup {
 
         /**
          * Notify the client the user started tracking.
-         * 
+         *
          * @param pagedView The PagedView the user started to track.
          */
         void onStartTracking(PagedView pagedView);
 
         /**
          * Notify the client the user ended tracking.
-         * 
+         *
          * @param pagedView The PagedView the user ended to track.
          */
         void onStopTracking(PagedView pagedView);
@@ -190,7 +199,8 @@ public class PagedView extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(final boolean changed, final int l, final int t, final int r, final int b) {
+    protected void onLayout(final boolean changed, final int l, final int t, final int r,
+            final int b) {
 
         if (mPageCount <= 0) {
             return;
@@ -214,7 +224,8 @@ public class PagedView extends ViewGroup {
     public boolean onInterceptTouchEvent(final MotionEvent ev) {
 
         /*
-         * Shortcut the most recurring case: the user is in the dragging state and he is moving his finger. We want to intercept this motion.
+         * Shortcut the most recurring case: the user is in the dragging state and he is moving his
+         * finger. We want to intercept this motion.
          */
         final int action = ev.getAction();
         if (action == MotionEvent.ACTION_MOVE && mIsBeingDragged) {
@@ -227,8 +238,8 @@ public class PagedView extends ViewGroup {
             case MotionEvent.ACTION_DOWN:
                 mStartMotionX = x;
                 /*
-                 * If currently scrolling and user touches the screen, initiate drag; otherwise don't. mScroller.isFinished should be false when being
-                 * flinged.
+                 * If currently scrolling and user touches the screen, initiate drag; otherwise
+                 * don't. mScroller.isFinished should be false when being flinged.
                  */
                 mIsBeingDragged = !mScroller.isFinished();
                 if (mIsBeingDragged) {
@@ -239,8 +250,8 @@ public class PagedView extends ViewGroup {
 
             case MotionEvent.ACTION_MOVE:
                 /*
-                 * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check whether the user has moved far enough from his
-                 * original down touch.
+                 * mIsBeingDragged == false, otherwise the shortcut would have caught it. Check
+                 * whether the user has moved far enough from his original down touch.
                  */
 
                 final int xDiff = Math.abs(x - mStartMotionX);
@@ -334,7 +345,7 @@ public class PagedView extends ViewGroup {
 
     /**
      * Set a listener to be notified of changes that may occur in this {@link PagedView}.
-     * 
+     *
      * @param listener The listener to callback.
      */
     public void setOnPageChangeListener(final OnPagedViewChangeListener listener) {
@@ -342,8 +353,9 @@ public class PagedView extends ViewGroup {
     }
 
     /**
-     * Sets the {@link PagedAdapter} used to fill this {@link PagedView} with some basic information : the number of displayed pages, the pages, etc.
-     * 
+     * Sets the {@link PagedAdapter} used to fill this {@link PagedView} with some basic information
+     * : the number of displayed pages, the pages, etc.
+     *
      * @param adapter The {@link PagedAdapter} to set to this {@link PagedView}
      */
     public void setAdapter(final PagedAdapter adapter) {
@@ -374,7 +386,7 @@ public class PagedView extends ViewGroup {
 
     /**
      * Returns the current page.
-     * 
+     *
      * @return The current page
      */
     public int getCurrentPage() {
@@ -387,7 +399,7 @@ public class PagedView extends ViewGroup {
 
     /**
      * Initiate an animated scrolling from the current position to the given page
-     * 
+     *
      * @param page The page to scroll to.
      */
     public void smoothScrollToPage(final int page) {
@@ -410,7 +422,7 @@ public class PagedView extends ViewGroup {
 
     /**
      * Instantly moves the PagedView from the current position to the given page.
-     * 
+     *
      * @param page The page to scroll to.
      */
     public void scrollToPage(final int page) {
@@ -539,8 +551,10 @@ public class PagedView extends ViewGroup {
         }
 
         // Measure the view
-        final int childWidthSpec = getChildMeasureSpec(MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY), 0, lp.width);
-        final int childHeightSpec = getChildMeasureSpec(MeasureSpec.makeMeasureSpec(getHeight(), MeasureSpec.EXACTLY), 0, lp.height);
+        final int childWidthSpec = getChildMeasureSpec(
+                MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY), 0, lp.width);
+        final int childHeightSpec = getChildMeasureSpec(
+                MeasureSpec.makeMeasureSpec(getHeight(), MeasureSpec.EXACTLY), 0, lp.height);
         child.measure(childWidthSpec, childHeightSpec);
 
         // Layout the view
@@ -584,15 +598,16 @@ public class PagedView extends ViewGroup {
             out.writeInt(currentPage);
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(final Parcel in) {
-                return new SavedState(in);
-            }
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+                    public SavedState createFromParcel(final Parcel in) {
+                        return new SavedState(in);
+                    }
 
-            public SavedState[] newArray(final int size) {
-                return new SavedState[size];
-            }
-        };
+                    public SavedState[] newArray(final int size) {
+                        return new SavedState[size];
+                    }
+                };
     }
 
     @Override

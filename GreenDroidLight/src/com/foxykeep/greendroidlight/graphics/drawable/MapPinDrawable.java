@@ -1,3 +1,24 @@
+/**
+ * <pre>
+ * 2012 Foxykeep (http://www.foxykeep.com)
+ *
+ * Based on the project GreenDroid by Cyril Mottier (http://www.cyrilmottier.com)
+ *
+ * Original License :
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ * </pre>
+ */
+
 package com.foxykeep.greendroidlight.graphics.drawable;
 
 import android.content.res.ColorStateList;
@@ -17,9 +38,10 @@ import android.graphics.drawable.Drawable;
 import com.foxykeep.greendroidlight.R;
 
 /**
- * A {@link Drawable} dedicated to {@link MapView}s. A {@link MapPinDrawable} displays a rounded pin with a dot in the middle. This class lets you
- * easily change the color of the pin as well as the dot in the center of the pin.
- * 
+ * A {@link Drawable} dedicated to {@link MapView}s. A {@link MapPinDrawable} displays a rounded pin
+ * with a dot in the middle. This class lets you easily change the color of the pin as well as the
+ * dot in the center of the pin.
+ *
  * @author Cyril Mottier
  */
 public class MapPinDrawable extends Drawable {
@@ -56,7 +78,7 @@ public class MapPinDrawable extends Drawable {
 
     /**
      * Create a new {@link MapPinDrawable} that has a single color.
-     * 
+     *
      * @param res The application resources
      * @param color The color of the pin/dot
      */
@@ -66,7 +88,7 @@ public class MapPinDrawable extends Drawable {
 
     /**
      * Create a new {@link MapPinDrawable}.
-     * 
+     *
      * @param res The application resources
      * @param pinClor The color of the pin
      * @param dotColor The color of the dot
@@ -78,9 +100,10 @@ public class MapPinDrawable extends Drawable {
 
     /**
      * Create a new {@link MapPinDrawable} that may change color depending on its current state.
-     * 
+     *
      * @param res The application resources
-     * @param color A {@link ColorStateList} object giving a set of colors changing depending on the current {@link Drawable}'s state
+     * @param color A {@link ColorStateList} object giving a set of colors changing depending on the
+     *            current {@link Drawable}'s state
      */
     public MapPinDrawable(final Resources res, final ColorStateList color) {
         this(res, color, color);
@@ -88,12 +111,15 @@ public class MapPinDrawable extends Drawable {
 
     /**
      * Create a new {@link MapPinDrawable} that may change color depending on its current state.
-     * 
+     *
      * @param res The application resources
-     * @param pinColor A {@link ColorStateList} object giving a set of colors for the pin changing depending on the current {@link Drawable} 's state
-     * @param dotColor A {@link ColorStateList} object giving a set of colors for the dot changing depending on the current {@link Drawable} 's state
+     * @param pinColor A {@link ColorStateList} object giving a set of colors for the pin changing
+     *            depending on the current {@link Drawable} 's state
+     * @param dotColor A {@link ColorStateList} object giving a set of colors for the dot changing
+     *            depending on the current {@link Drawable} 's state
      */
-    public MapPinDrawable(final Resources res, final ColorStateList pinColor, final ColorStateList dotColor) {
+    public MapPinDrawable(final Resources res, final ColorStateList pinColor,
+            final ColorStateList dotColor) {
         initBitmaps(res);
         setColors(pinColor, dotColor);
     }
@@ -108,7 +134,7 @@ public class MapPinDrawable extends Drawable {
 
     /**
      * Set the color for the pin/dot
-     * 
+     *
      * @param pinClor The color of the pin
      * @param dotColor The color of the dot
      */
@@ -123,12 +149,13 @@ public class MapPinDrawable extends Drawable {
 
     /**
      * Set the color for the pin/dot
-     * 
+     *
      * @param pinClor The color of the pin
      * @param dotColor The color of the dot
      */
     public void setColors(final ColorStateList pinColor, final ColorStateList dotColor) {
-        if (mColorMode != COLOR_MODE_COLOR_STATE_LIST || mPinColorStateList != pinColor || mDotColorStateList != dotColor) {
+        if (mColorMode != COLOR_MODE_COLOR_STATE_LIST || mPinColorStateList != pinColor
+                || mDotColorStateList != dotColor) {
             mColorMode = COLOR_MODE_COLOR_STATE_LIST;
             mPinColorStateList = pinColor;
             mDotColorStateList = dotColor;
@@ -154,8 +181,10 @@ public class MapPinDrawable extends Drawable {
     @Override
     protected boolean onStateChange(final int[] stateSet) {
         if (mColorMode == COLOR_MODE_COLOR_STATE_LIST) {
-            int pinColor = (mPinColorStateList != null) ? mPinColorStateList.getColorForState(stateSet, Color.BLACK) : Color.BLACK;
-            int dotColor = (mDotColorStateList != null) ? mDotColorStateList.getColorForState(stateSet, Color.BLACK) : Color.BLACK;
+            int pinColor = (mPinColorStateList != null) ? mPinColorStateList.getColorForState(
+                    stateSet, Color.BLACK) : Color.BLACK;
+            int dotColor = (mDotColorStateList != null) ? mDotColorStateList.getColorForState(
+                    stateSet, Color.BLACK) : Color.BLACK;
             if (mCurrentPinColor != pinColor || mCurrentDotColor != dotColor) {
                 mCurrentPinColor = pinColor;
                 mCurrentDotColor = dotColor;
@@ -171,7 +200,8 @@ public class MapPinDrawable extends Drawable {
         if (mNeedRebuild) {
 
             if (mMapPin == null) {
-                mMapPin = Bitmap.createBitmap(mBase.getWidth(), mBase.getHeight(), Bitmap.Config.ARGB_8888);
+                mMapPin = Bitmap.createBitmap(mBase.getWidth(), mBase.getHeight(),
+                        Bitmap.Config.ARGB_8888);
             }
             Canvas c = new Canvas(mMapPin);
             c.drawRect(0, 0, mMapPin.getWidth(), mMapPin.getHeight(), sClearerPaint);

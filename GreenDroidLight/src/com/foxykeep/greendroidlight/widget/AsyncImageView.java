@@ -1,18 +1,24 @@
-/*
- * Copyright (C) 2010 Cyril Mottier (http://www.cyrilmottier.com)
+/**
+ * <pre>
+ * 2012 Foxykeep (http://www.foxykeep.com)
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Based on the project GreenDroid by Cyril Mottier (http://www.cyrilmottier.com)
+ *
+ * Original License :
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ * </pre>
  */
+
 package com.foxykeep.greendroidlight.widget;
 
 import android.content.Context;
@@ -37,18 +43,22 @@ import com.foxykeep.greendroidlight.util.GDUtils;
 
 /**
  * <p>
- * A {@link AsyncImageView} is a network-aware ImageView. It may display images from the web according to a URL. {@link AsyncImageView} takes care of
- * loading asynchronously images on the Internet. It also caches images in an application-wide cache to prevent loading images several times.
+ * A {@link AsyncImageView} is a network-aware ImageView. It may display images from the web
+ * according to a URL. {@link AsyncImageView} takes care of loading asynchronously images on the
+ * Internet. It also caches images in an application-wide cache to prevent loading images several
+ * times.
  * </p>
  * <p>
- * Clients may listen the {@link OnImageViewLoadListener} to be notified of the current image loading state.
+ * Clients may listen the {@link OnImageViewLoadListener} to be notified of the current image
+ * loading state.
  * </p>
  * <p>
- * {@link AsyncImageView} may be extremely useful in ListView's row. To prevent your {@link AsyncImageView} from downloading while scrolling or
- * flinging it is a good idea to pause it using {@link #setPaused(boolean)} method. Once the scrolling/flinging is over, <em>un-pause</em> your
- * {@link AsyncImageView}s using <code>setPaused(false)</code>
+ * {@link AsyncImageView} may be extremely useful in ListView's row. To prevent your
+ * {@link AsyncImageView} from downloading while scrolling or flinging it is a good idea to pause it
+ * using {@link #setPaused(boolean)} method. Once the scrolling/flinging is over, <em>un-pause</em>
+ * your {@link AsyncImageView}s using <code>setPaused(false)</code>
  * </p>
- * 
+ *
  * @author Cyril Mottier
  */
 public class AsyncImageView extends ImageView implements ImageRequestCallback {
@@ -57,28 +67,29 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Clients may listen to {@link AsyncImageView} changes using a {@link OnImageViewLoadListener}.
-     * 
+     *
      * @author Cyril Mottier
      */
     public static interface OnImageViewLoadListener {
 
         /**
          * Called when the image started to load
-         * 
+         *
          * @param imageView The AsyncImageView that started loading
          */
         void onLoadingStarted(AsyncImageView imageView);
 
         /**
-         * Called when the image ended to load that is when the image has been downloaded and is ready to be displayed on screen
-         * 
+         * Called when the image ended to load that is when the image has been downloaded and is
+         * ready to be displayed on screen
+         *
          * @param imageView The AsyncImageView that ended loading
          */
         void onLoadingEnded(AsyncImageView imageView, Bitmap image);
 
         /**
          * Called when the image loading failed
-         * 
+         *
          * @param imageView The AsyncImageView that failed to load
          */
         void onLoadingFailed(AsyncImageView imageView, Throwable throwable);
@@ -116,7 +127,8 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
         initializeDefaultValues();
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AsyncImageView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AsyncImageView, defStyle,
+                0);
 
         Drawable d = a.getDrawable(R.styleable.AsyncImageView_defaultSrc);
         if (d != null) {
@@ -140,8 +152,9 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Return true if this AsyncImageView is currently loading an image.
-     * 
-     * @return true if this AsyncImageView is currently loading an image. Otherwise it returns false.
+     *
+     * @return true if this AsyncImageView is currently loading an image. Otherwise it returns
+     *         false.
      */
     public boolean isLoading() {
         return mRequest != null;
@@ -149,7 +162,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Return true if the displayed image has been correctly loaded.
-     * 
+     *
      * @return true if this AsyncImageView succeed to load the image at the given url.
      */
     public boolean isLoaded() {
@@ -157,8 +170,9 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
     }
 
     /**
-     * Pause this AsyncImageView preventing it from downloading the image. The download process will start back once setPaused(false) is called.
-     * 
+     * Pause this AsyncImageView preventing it from downloading the image. The download process will
+     * start back once setPaused(false) is called.
+     *
      * @param paused
      */
     public void setPaused(final boolean paused) {
@@ -172,7 +186,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Helper to {@link #setOptions(Options)} that simply sets the inDensity for loaded image.
-     * 
+     *
      * @param inDensity
      * @see AsyncImageView#setOptions(Options)
      */
@@ -188,9 +202,10 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
     }
 
     /**
-     * Assign an Options object to this {@link AsyncImageView}. Those options are used internally by the {@link AsyncImageView} when decoding the
-     * image. This may be used to prevent the default behavior that loads all images as mdpi density.
-     * 
+     * Assign an Options object to this {@link AsyncImageView}. Those options are used internally by
+     * the {@link AsyncImageView} when decoding the image. This may be used to prevent the default
+     * behavior that loads all images as mdpi density.
+     *
      * @param options
      */
     public void setOptions(final BitmapFactory.Options options) {
@@ -205,8 +220,9 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
     }
 
     /**
-     * Reload the image pointed by the given URL. You may want to force reloading by setting the force parameter to true.
-     * 
+     * Reload the image pointed by the given URL. You may want to force reloading by setting the
+     * force parameter to true.
+     *
      * @param force if true the AsyncImageView won't look into the application-wide cache.
      */
     public void reload(final boolean force) {
@@ -246,7 +262,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Register a callback to be invoked when an event occured for this AsyncImageView.
-     * 
+     *
      * @param listener The listener that will be notified
      */
     public void setOnImageViewLoadListener(final OnImageViewLoadListener listener) {
@@ -254,11 +270,13 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
     }
 
     /**
-     * Set the url of the image that will be used as the content of this AsyncImageView. The given may be null in order to display the default image.
-     * Please note the url may be a local url. For instance, you can asynchronously load images from the disk memory is the url scheme is
+     * Set the url of the image that will be used as the content of this AsyncImageView. The given
+     * may be null in order to display the default image. Please note the url may be a local url.
+     * For instance, you can asynchronously load images from the disk memory is the url scheme is
      * <code>file://</code>
-     * 
-     * @param url The url of the image to set. Pass null to force the AsyncImageView to display the default image
+     *
+     * @param url The url of the image to set. Pass null to force the AsyncImageView to display the
+     *            default image
      */
     public void setUrl(final String url) {
 
@@ -294,7 +312,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Set the default bitmap as the content of this AsyncImageView
-     * 
+     *
      * @param bitmap The bitmap to set
      */
     public void setDefaultImageBitmap(final Bitmap bitmap) {
@@ -305,7 +323,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Set the default drawable as the content of this AsyncImageView
-     * 
+     *
      * @param drawable The drawable to set
      */
     public void setDefaultImageDrawable(final Drawable drawable) {
@@ -316,7 +334,7 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
 
     /**
      * Set the default resource as the content of this AsyncImageView
-     * 
+     *
      * @param resId The resource identifier to set
      */
     public void setDefaultImageResource(final int resId) {
@@ -326,9 +344,9 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
     }
 
     /**
-     * Set an image processor to this AsyncImageView. An ImageProcessor may be used in order to work on the retrieved Bitmap prior displaying it on
-     * screen.
-     * 
+     * Set an image processor to this AsyncImageView. An ImageProcessor may be used in order to work
+     * on the retrieved Bitmap prior displaying it on screen.
+     *
      * @param imageProcessor The {@link ImageProcessor} to set
      * @see ImageProcessor
      */
@@ -373,15 +391,16 @@ public class AsyncImageView extends ImageView implements ImageRequestCallback {
             out.writeString(url);
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(final Parcel in) {
-                return new SavedState(in);
-            }
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+                    public SavedState createFromParcel(final Parcel in) {
+                        return new SavedState(in);
+                    }
 
-            public SavedState[] newArray(final int size) {
-                return new SavedState[size];
-            }
-        };
+                    public SavedState[] newArray(final int size) {
+                        return new SavedState[size];
+                    }
+                };
     }
 
     @Override

@@ -1,18 +1,24 @@
-/*
- * Copyright (C) 2011 Cyril Mottier (http://www.cyrilmottier.com)
+/**
+ * <pre>
+ * 2012 Foxykeep (http://www.foxykeep.com)
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Based on the project GreenDroid by Cyril Mottier (http://www.cyrilmottier.com)
+ *
+ * Original License :
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ * </pre>
  */
+
 package com.foxykeep.greendroidlight.widget;
 
 import android.content.Context;
@@ -30,19 +36,21 @@ import com.foxykeep.greendroidlight.R;
 
 /**
  * <p>
- * Visual indicator of a paged content. The PageIndicator usually displays a line of dots. Each dot represents a page. The PageIndicator supports two
- * types of dots.
+ * Visual indicator of a paged content. The PageIndicator usually displays a line of dots. Each dot
+ * represents a page. The PageIndicator supports two types of dots.
  * </p>
  * <ul>
- * <li>{@link DotType#SINGLE}: all dots are drawn but only one is in the selected state at a time. The selected one represents the currently visible
- * page.</li>
- * <li>{@link DotType#MULTIPLE}: the selected page is actually represented by the amount of dots currently being drawn. This behavior is similar to
- * the one visible on the Android Launcher application.</li>
+ * <li>{@link DotType#SINGLE}: all dots are drawn but only one is in the selected state at a time.
+ * The selected one represents the currently visible page.</li>
+ * <li>{@link DotType#MULTIPLE}: the selected page is actually represented by the amount of dots
+ * currently being drawn. This behavior is similar to the one visible on the Android Launcher
+ * application.</li>
  * </ul>
  * <p>
- * You can have a look at GDCatalog to get a sample code of how to use a PageIndicator in addition to a {@link PagedView}.
+ * You can have a look at GDCatalog to get a sample code of how to use a PageIndicator in addition
+ * to a {@link PagedView}.
  * </p>
- * 
+ *
  * @author Cyril Mottier
  */
 public class PageIndicator extends View {
@@ -54,7 +62,7 @@ public class PageIndicator extends View {
 
     /**
      * Interface containing of dot types supported by the PageIndicator class.
-     * 
+     *
      * @author Cyril Mottier
      */
     public interface DotType {
@@ -66,8 +74,8 @@ public class PageIndicator extends View {
         int SINGLE = 0;
 
         /**
-         * Represents the multiple dot type. Several selected dot may be drawn at a time. The number of dots drawn represents the currently remaining
-         * page count.
+         * Represents the multiple dot type. Several selected dot may be drawn at a time. The number
+         * of dots drawn represents the currently remaining page count.
          */
         int MULTIPLE = 1;
     }
@@ -103,7 +111,8 @@ public class PageIndicator extends View {
 
         mInitializing = true;
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PageIndicator, defStyle, 0);
+        TypedArray a = context
+                .obtainStyledAttributes(attrs, R.styleable.PageIndicator, defStyle, 0);
 
         setDotCount(a.getInt(R.styleable.PageIndicator_dotCount, mDotCount));
         setActiveDot(a.getInt(R.styleable.PageIndicator_activeDot, mActiveDot));
@@ -130,7 +139,7 @@ public class PageIndicator extends View {
 
     /**
      * Get the maximum number of dots to be drawn.
-     * 
+     *
      * @return The maximum number of dots.
      * @see #setDotCount(int)
      */
@@ -140,7 +149,7 @@ public class PageIndicator extends View {
 
     /**
      * Set the number of dots.
-     * 
+     *
      * @param dotCount The number oF dots
      * @see #getDotCount()
      */
@@ -157,9 +166,9 @@ public class PageIndicator extends View {
     }
 
     /**
-     * Return the current active dot. Depending on the current dot type of this PageIndicator the current active dot may be the number of displayed
-     * dots or the index of the selected dot
-     * 
+     * Return the current active dot. Depending on the current dot type of this PageIndicator the
+     * current active dot may be the number of displayed dots or the index of the selected dot
+     *
      * @return The current active dot index or dots count
      * @see #setActiveDot(int)
      */
@@ -168,9 +177,10 @@ public class PageIndicator extends View {
     }
 
     /**
-     * Set the index of the active dot or the number of active dots. Depending on the current dot type of this PageIndicator the current active dot
-     * may be the number of displayed dots or the index of the selected dot
-     * 
+     * Set the index of the active dot or the number of active dots. Depending on the current dot
+     * type of this PageIndicator the current active dot may be the number of displayed dots or the
+     * index of the selected dot
+     *
      * @param activeDot The number/index of (the) active dot(s)
      * @see #getActiveDot()
      */
@@ -198,7 +208,7 @@ public class PageIndicator extends View {
 
     /**
      * Return the Drawable currently used for each dot.
-     * 
+     *
      * @return The Drawable used to draw each dot.
      */
     public Drawable getDotDrawable() {
@@ -206,11 +216,12 @@ public class PageIndicator extends View {
     }
 
     /**
-     * Set the Drawable used for each dot. The given Drawable may be a StateListDrawable in order to take advantage of the selection system. If your
-     * StateListDrawable contains a android.R.attr.state_selected state, the Drawable will be used to represent a selected dot.
+     * Set the Drawable used for each dot. The given Drawable may be a StateListDrawable in order to
+     * take advantage of the selection system. If your StateListDrawable contains a
+     * android.R.attr.state_selected state, the Drawable will be used to represent a selected dot.
      * <em><strong>Note :</strong> this methods does not support Drawable
      * that has no intrinsic dimensions.</em>
-     * 
+     *
      * @param dotDrawable The Drawable used to represents a dot
      */
     public void setDotDrawable(final Drawable dotDrawable) {
@@ -223,12 +234,14 @@ public class PageIndicator extends View {
 
             if (dotDrawable != null) {
 
-                if (dotDrawable.getIntrinsicHeight() == -1 || dotDrawable.getIntrinsicWidth() == -1) {
+                if (dotDrawable.getIntrinsicHeight() == -1
+                        || dotDrawable.getIntrinsicWidth() == -1) {
                     // Do not accept Drawable with no intrinsic dimensions.
                     return;
                 }
 
-                dotDrawable.setBounds(0, 0, dotDrawable.getIntrinsicWidth(), dotDrawable.getIntrinsicHeight());
+                dotDrawable.setBounds(0, 0, dotDrawable.getIntrinsicWidth(),
+                        dotDrawable.getIntrinsicHeight());
                 dotDrawable.setCallback(this);
                 if (dotDrawable.isStateful()) {
                     dotDrawable.setState(getDrawableState());
@@ -242,7 +255,7 @@ public class PageIndicator extends View {
 
     /**
      * The spacing between each dot
-     * 
+     *
      * @return The spacing between each dot
      */
     public int getDotSpacing() {
@@ -251,7 +264,7 @@ public class PageIndicator extends View {
 
     /**
      * Set the spacing between each dot
-     * 
+     *
      * @param dotSpacing The spacing between each dot.
      */
     public void setDotSpacing(final int dotSpacing) {
@@ -264,7 +277,7 @@ public class PageIndicator extends View {
 
     /**
      * Return the gravity used to draw dots/
-     * 
+     *
      * @return The current gravity
      */
     public int getGravity() {
@@ -272,8 +285,9 @@ public class PageIndicator extends View {
     }
 
     /**
-     * Specifies how to align the dots by the view's x- and/or y-axis when the space taken by the dots is smaller than the view.
-     * 
+     * Specifies how to align the dots by the view's x- and/or y-axis when the space taken by the
+     * dots is smaller than the view.
+     *
      * @param gravity The gravity
      */
     public void setGravity(final int gravity) {
@@ -285,7 +299,7 @@ public class PageIndicator extends View {
 
     /**
      * The current dot type
-     * 
+     *
      * @return The dot type of this {@link PageIndicator}
      * @see DotType
      */
@@ -295,7 +309,7 @@ public class PageIndicator extends View {
 
     /**
      * Specifies the type of dot actually drawn by this {@link PageIndicator}
-     * 
+     *
      * @param dotType The dot type to use
      * @see DotType
      */
@@ -350,7 +364,8 @@ public class PageIndicator extends View {
         width += getPaddingRight() + getPaddingLeft();
         height += getPaddingBottom() + getPaddingTop();
 
-        setMeasuredDimension(resolveSize(width, widthMeasureSpec), resolveSize(height, heightMeasureSpec));
+        setMeasuredDimension(resolveSize(width, widthMeasureSpec),
+                resolveSize(height, heightMeasureSpec));
     }
 
     @Override
@@ -417,15 +432,16 @@ public class PageIndicator extends View {
             out.writeInt(activeDot);
         }
 
-        public static final Parcelable.Creator<SavedState> CREATOR = new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(final Parcel in) {
-                return new SavedState(in);
-            }
+        public static final Parcelable.Creator<SavedState> CREATOR =
+                new Parcelable.Creator<SavedState>() {
+                    public SavedState createFromParcel(final Parcel in) {
+                        return new SavedState(in);
+                    }
 
-            public SavedState[] newArray(final int size) {
-                return new SavedState[size];
-            }
-        };
+                    public SavedState[] newArray(final int size) {
+                        return new SavedState[size];
+                    }
+                };
     }
 
     @Override
