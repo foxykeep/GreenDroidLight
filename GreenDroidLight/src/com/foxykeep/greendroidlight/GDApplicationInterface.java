@@ -31,7 +31,6 @@ import java.util.concurrent.ExecutorService;
  *
  * @author foxykeep
  */
-@Deprecated
 public interface GDApplicationInterface {
 
     public ImageCache getImageCache();
