@@ -41,7 +41,7 @@ public class ImageCache implements OnLowMemoryListener {
 
     public ImageCache(final Context context) {
         mSoftCache = new HashMap<String, SoftReference<Bitmap>>();
-        GDUtils.getTickengoApplication(context).registerOnLowMemoryListener(this);
+        GDUtils.getGDApplicationInterface(context).registerOnLowMemoryListener(this);
     }
 
     public static ImageCache from(final Context context) {

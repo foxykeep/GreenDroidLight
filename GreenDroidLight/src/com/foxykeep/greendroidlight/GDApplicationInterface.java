@@ -22,9 +22,16 @@
 package com.foxykeep.greendroidlight;
 
 import com.foxykeep.greendroidlight.image.ImageCache;
+import com.foxykeep.greendroidlight.widget.AsyncImageView;
 
 import java.util.concurrent.ExecutorService;
 
+/**
+ * Interface to implement by your application if you are using {@link AsyncImageView}.
+ *
+ * @author foxykeep
+ */
+@Deprecated
 public interface GDApplicationInterface {
 
     public ImageCache getImageCache();

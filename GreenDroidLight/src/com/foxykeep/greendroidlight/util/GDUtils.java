@@ -45,7 +45,7 @@ public class GDUtils {
      * @return The application( which implements {@link GDApplicationInterface}) the given context
      *         is linked to.
      */
-    public static GDApplicationInterface getTickengoApplication(final Context context) {
+    public static GDApplicationInterface getGDApplicationInterface(final Context context) {
         return (GDApplicationInterface) context.getApplicationContext();
     }
 
@@ -56,7 +56,7 @@ public class GDUtils {
      * @return The image cache of the current {@link GDApplication}
      */
     public static ImageCache getImageCache(final Context context) {
-        return getTickengoApplication(context).getImageCache();
+        return getGDApplicationInterface(context).getImageCache();
     }
 
     /**
@@ -66,7 +66,7 @@ public class GDUtils {
      * @return The executors pool of the current {@link GDApplication}
      */
     public static ExecutorService getExecutorService(final Context context) {
-        return getTickengoApplication(context).getExecutorService();
+        return getGDApplicationInterface(context).getExecutorService();
     }
 
 }
